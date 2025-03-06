@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique Symfony{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="example-wrapper">
+        <div class="cart-header">
+            <h1>Boutique Symfony</h1>
+            <a class="btn btn-info" href="{{ path('panier') }}">Voir le panier</a>
+        </div>
+        <div class="row">
+            {% for produit in produits %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="card-text">Prix : {{ produit.prix }}€</p>
+                        <a class="btn btn-info" href="{{ path('ajouter_panier', {'id': produit.id}) }}">Ajouter au panier</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

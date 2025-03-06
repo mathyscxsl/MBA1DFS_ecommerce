@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="example-wrapper">
+        <div class="cart-header">
+            <h1>Votre Panier</h1>
+            <a href="{{ path('produit_index') }}" class="btn btn-info">Retour à la boutique</a>
+        </div>
+
+        {% if panier is empty %}
+            <div class="empty-cart">
+                <p>Votre panier est vide.</p>
+            </div>
+        {% else %}
+            <ul class="cart-items">
+                {% for produit in panier %}
+                    <li class="cart-item">
+                        <div class="cart-item-details">
+                            <strong>{{ produit.nom }}</strong> - {{ produit.prix }}€
+                        </div>
+                        <a href="{{ path('supprimer_panier', {'index': loop.index0}) }}" class="btn btn-danger">Supprimer</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="cart-total">
+                <p><strong>Total : {{ total }}€</strong></p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
